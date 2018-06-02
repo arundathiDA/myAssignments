@@ -1,0 +1,28 @@
+				                          	Assignment 3.1
+
+
+1.How to Import SAS XPORT files into R with the foreign package?
+Solution: >library(foreign)
+	    >setwd(“H:/”)
+	    >data<-read.xport(“sas.sas”)
+	    >data
+	    
+	
+
+       2. How to Import SAS Files into R with the Haven package?
+                Solution:  > install.packages(“foreign”)
+	                  > library(foreign)
+	                  > setwd("H:/Arundathi/Arundathi/acadgild/sas.sas")
+	                   >  read.dta
+	  
+
+
+        3. How to read Weka Attribute-Relation File Format (ARFF) files in R?
+                Solution: read.arff(file)
+                 But I am not able to execute this
+
+        4. How to read a heavy csv/tsv file using read r package?
+Solution: >setwd(“H:/”)
+	    >read.table(“file=”samplecol.txt”,sep=”\t”,header=TRUE,quote=”\”)
+	    >head(file name)
+
