@@ -1,0 +1,37 @@
+Assignment 2.2
+1. Read multiple JSON files into a directory to convert into a dataset.
+I have files text1, text2, text3 in the directory JSON.
+
+Solution :
+ ls<-c("H:/cyclingjson.json","H:/cyclingjson1."json")
+ v<-as.data.frame()
+ for(I in ls)
+z <- read.txt(i)
+rbind(v,z)
+
+2. Parse the following JSON into a data frame.
+js<-'{
+"name": null, "release_date_local": null, "title": "3 (2011)",
+"opening_weekend_take": 1234, "year": 2011,
+"release_date_wide": "2011-09-16", "gross": 59954
+}'
+
+Solution:  
+
+
+3. Write a script for Variable Binning using R.
+
+Solution: Discretizes all numerical data in a data frame into categorical bins of equal length or content or based on automatically determined clusters.
+In simple converting numerical into categorical.
+Two methods are :1. Equal width 
+		      2.Equal Frequency
+
+> ?cut
+> mpg<-mtcars$mpg
+> mpg
+> cut(mpg,5)
+> cut(mpg,5,labels = c("First","Second","Third","Fourth","Fifth"))
+> mtcars$bins<-  cut(mpg,5,labels = c("First","Second","Third","Fourth","Fifth"))
+> mtcars
+
+
