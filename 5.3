@@ -1,0 +1,40 @@
+                      Assignment 5.3
+                      
+1. Test whether two vectors are exactly equal (element by element).
+vec1 = c(rownames(mtcars[1:15,]))
+vec2 = c(rownames(mtcars[11:25,]))
+Solution:
+> vec1 = c(rownames(mtcars[1:15,]))
+> vec2 = c(rownames(mtcars[11:25,]))
+> length(vec1)
+[1] 15
+> length(vec2)
+[1] 15
+Yes Equal
+2. Sort the character vector in ascending order and descending order.
+vec1 = c(rownames(mtcars[1:15,]))
+vec2 = c(rownames(mtcars[11:25,]))
+Solution: > vec1 = c(rownames(mtcars[1:15,]))
+	  > sort(vec1)					     Ascending
+	  > vec2 = c(rownames(mtcars[11:25,]))
+	  > sort(vec2)
+	
+	  > vec1 = c(rownames(mtcars[1:15,]))
+         > sort(vec1,decreasing = T)				Descending	
+	 > vec2 = c(rownames(mtcars[11:25,]))
+	 > sort(vec2,decreasing = T)
+ 
+
+3. What is the major difference between str() and paste() show an example.
+Solution: str()  only one line for each ‘basic’ structure is displayed. It is especially well suited to compactly display the (abbreviated) contents of (possibly nested) lists. The idea is to give reasonable output for any R object. It calls args for (non-primitive) function objects.
+paste()  The  is the stuff you want to paste together and sep and collapse are the guys to get it done. There are three basic things I paste together:
+•	A bunch of individual character strings.
+•	2 or more strings pasted element for element.
+•	One string smushed together.
+
+
+4. Introduce a separator when concatenating the strings.
+Solution: > paste(…, sep=””, collapse=NULL)
+
+Sep: is a character that would be appended between two adjacent strings and acts as a separator
+collapse: is an optional character to separate the results
