@@ -1,0 +1,28 @@
+Assignment 5.2
+
+
+1. Obtain the elements of the union between two character vectors.
+vec1 = c(rownames(mtcars[1:15,]))
+vec2 = c(rownames(mtcars[10:32,]))
+Solution: > vec12<-union(vec1, vec2) 
+
+ Returns all the elements of vec1 and vec2 without repeating common elements
+ vec12
+
+
+
+2. Get those elements that are common to both vectors.
+vec1 = c(rownames(mtcars[1:15,]))
+vec2 = c(rownames(mtcars[10:32,]))
+Solution: > commonvec12<-vec1%in%vec2        
+	   > vec1[commonvec12]
+	   > intersect(vec1,vec2)
+
+
+
+3. Get the difference of the elements between two character vectors.
+vec1 = c(rownames(mtcars[1:15,]))
+vec2 = c(rownames(mtcars[10:32,]))
+Solution: > setdiff(vec1, vec2)  elements of vec1 which are not present in vec2
+	  > setdiff(vec2,vec1)   elements of vec2 which are not present in vec1
+
