@@ -1,0 +1,38 @@
+                                      
+                                      Assignment – 9.1
+1. If Z is norm (mean = 0, sd = 1)
+Find P(Z > 2.64)
+Find P(|Z| > 1.39)
+Solution:  
+
+		   Find P(Z > 2.64)
+
+  	     > # P (Z > 2.64)
+	     > pnorm(q=2.64,mean=0,sd=1,lower.tail = F)
+	
+	      [1] 0.004145301
+
+  Find P(|Z| > 1.39)
+
+	      > # P (|Z| > 1.39)
+	      > pnorm(q=1.39,mean=0,sd=1,lower.tail = F)
+
+	       [1] 0.08226444
+
+
+2. Suppose p = the proportion of students who are admitted to the graduate school of the University of
+California at Berkeley, and suppose that a public relation officer boasts that UCB has historically had a
+40% acceptance rate for its graduate school. Consider the data stored in the table UCBAdmissions from
+1973. Assuming these observations constituted a simple random sample, are they consistent with the
+officerâ..s claim, or do they provide evidence that the acceptance rate was significantly less than 40%?
+Use an Î± = 0.01 significance level.
+Solution:
+		> -qnorm(0.99)
+	        > A<- as.data.frame(UCBAdmissions)
+		> head(A)
+		> xtabs(Freq~Admit,data = A)
+		> (phat-0.40)/sqrt(0.4*0.6/(1755+2771))
+		> -qnorm(0.95)
+		> pnorm(-1.680919)
+			[1] 0.04638932
+
