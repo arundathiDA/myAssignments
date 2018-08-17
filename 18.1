@@ -1,0 +1,149 @@
+Assignment18.1
+Solution:
+	#a),b),c),d)
+	#using dataset cs2m
+	#reading the dataset
+	cs2m <- read.csv("D:/acadgild/cs2m.csv")
+	View(cs2m)
+	
+
+	names(cs2m)
+	nrow(cs2m)
+	ncol(cs2m)
+	str(cs2m)
+	
+
+	#decision tree
+	select_rows<- sample(1:nrow(cs2m),round(0.2*nrow(cs2m)),replace = F)
+	cs2mTest<- cs2m[select_rows,]
+	cs2mTest
+	cs2mTrain<- cs2m[-(select_rows),]
+	cs2mTrain
+	
+
+	library(tree)
+	modelRegTree<- tree(BP~DrugR+Chlstrl+Age+Prgnt+AnxtyLH,data = cs2mTrain)
+	plot(modelRegTree)
+	
+
+	text(modelRegTree,pretty = 0 ,cex=0.75)
+	
+
+	pred<- predict(modelRegTree,newdata= cs2mTest)
+	head(pred,3)
+	
+
+	ME<- sum(cs2mTest$BP - pred)/nrow(cs2mTest)
+	ME
+	
+
+	RSS<- sum(cs2mTest$BP-pred)^2
+	RSS
+	
+
+	RMSE<- sqrt(RSS/nrow(cs2mTest))
+	RMSE
+	
+
+	MAPE<- sum(abs(cs2mTest$BP-pred)/cs2mTest$BP)*100
+	MAPE
+	
+
+	#one more
+	library(tree)
+	modelRegTree1<- tree(DrugR~BP+Chlstrl+Age+Prgnt+AnxtyLH,data = cs2mTrain)
+	plot(modelRegTree1)
+	
+
+	text(modelRegTree1,pretty = 0 ,cex=0.75)
+	
+
+	pred<- predict(modelRegTree1,newdata= cs2mTest)
+	head(pred,3)
+	
+
+	ME<- sum(cs2mTest$DrugR - pred)/nrow(cs2mTest)
+	ME
+	
+
+	RSS<- sum(cs2mTest$DrugR-pred)^2
+	RSS
+	
+
+	RMSE<- sqrt(RSS/nrow(cs2mTest))
+	RMSE
+	
+
+	MAPE<- sum(abs(cs2mTest$DrugR-pred)/cs2mTest$DrugR)*100
+	MAPE
+	
+
+	#classification 
+	library(caTools)
+	library(tree)
+	#splitting
+	set.seed(1)
+	split<- sample.split(cs2m$DrugR,SplitRatio = 0.70)
+	cs2mTrain <- subset(cs2m,split == TRUE)
+	cs2mTest<- subset(cs2m, split == FALSE)
+	
+
+	table(cs2m$DrugR)
+	
+
+	table(cs2mTrain$DrugR)
+	
+
+	table(cs2mTest$DrugR)
+	
+
+	prop.table(table(cs2mTest$DrugR))
+	
+
+	table(cs2mTest$DrugR)
+	
+
+	prop.table(table(cs2mTrain$DrugR))
+	
+
+	modelClassTree<- tree(DrugR~BP+Chlstrl+Age+Prgnt+AnxtyLH,data = cs2mTrain)
+	plot(modelClassTree)
+	
+
+	text(modelClassTree,pretty = 0 ,cex=0.75)
+	
+
+	pred<- predict(modelClassTree,newdata= cs2mTest)
+	head(pred,3)
+	cs2m$predict <- predict
+	cs2m$predictROUND<- round(predict,digits = 0)
+	
+
+	#confusion matrix
+	table(cs2m$DrugR,predict>= 0.5)
+	
+
+	sum<- sum(table(cs2m$DrugR,predict>= 0.5))
+	
+
+	#interpretation, Accuracy and model goodness  of our model
+	#accuracy of our model
+	accuracy<- (13+12)/(30)
+	accuracy
+	#0.8333333333
+	
+
+	#model goodness
+	library(verification)
+	predictTrain<- predict(model,cs2m,type="response")
+	table(cs2m$DrugR,predictTrain >=0.5)
+	head(predictTrain,3)
+	auc(cs2m$DrugR,predictTrain)
+	
+
+	#conclusions
+	#Area under the curve: 0.9333333
+	#also our accuracy of our model is 0.8333333333
+	#also by seeing various measures like ME,RSS,RMSE,MAPE of our tree which is godd
+	#by this all things we conclude that our model is good and fit
+
